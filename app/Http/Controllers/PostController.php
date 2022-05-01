@@ -13,4 +13,19 @@ class PostController extends Controller
     public function index(){
         return Post::all();
     }
+
+    public function store(Request $request){
+        try {
+            $post = new Post();
+            $post->title = $request->title;
+            $post->body = $request ->body;
+
+            if ($post->save()) {
+                return response()->json(['status' => 'succes', 'message' => 'Post created successfully']);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+    }
+
 }
