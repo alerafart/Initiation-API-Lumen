@@ -28,4 +28,18 @@ class PostController extends Controller
         }
     }
 
+    public function update(Request $request, $id){
+        try {
+            $post = Post::findOrFail($id);
+            $post->title = $request->title;
+            $post->body = $request ->body;
+
+            if ($post->save()) {
+                return response()->json(['status' => 'succes', 'message' => 'Post updated successfully']);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+    }
+
 }
