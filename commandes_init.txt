@@ -20,3 +20,20 @@ dans PostController creer methode index
 public function index(){
         return Post::all();
     }
+
+
+pour creer une table users dans la bdd tapper en ligne de commande
+php artisan make:migration create_users_table --create=users
+
+puis dans tatabase migrations dans le fichier qui viens de se creer
+rajouter les champs
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+
+run migrate command
+php artisan migrate
+
+open userfactory.php dans database
+
+
