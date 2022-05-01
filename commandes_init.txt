@@ -1,0 +1,22 @@
+
+composer require flipbox/lumen-generator
+php artisan key:generate
+php artisan make:model Post -fmc
+php artisan migrate
+
+php artisan tinker
+App\Models\Post::factory()->count(10)->create()
+
+dans routes web.php
+creer route
+
+$router->group(['prefix' => 'api'], function() use ($router){
+    // $router->get(uri:'/posts', action:'PostController@index'); tuto php8
+    $router->get('/posts', 'PostController@index');
+});
+
+dans PostController creer methode index
+
+public function index(){
+        return Post::all();
+    }
